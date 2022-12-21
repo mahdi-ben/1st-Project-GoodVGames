@@ -1,0 +1,49 @@
+<h2>Ajouter un Jeu Video dans la Base de données !</h2>
+
+
+<div class="formRegister">
+    <form action="index.php?road=addGames" method="POST">
+        
+        <legend>Ajout d'un Jeu Video :</legend>
+        
+        <?php require_once('_errors.phtml');?>
+        <?php require_once('_valids.phtml');?>
+
+        <label for="name">Entrez le nom</label>
+        <input type="text" id="name" name="name" size="30">
+    
+        <label for="descriptif">Descriptif du Jeu</label>
+        <textarea type="textarea" id="descriptif" name="descriptif" size="30"></textarea>
+    
+        <label for="multiplayerslocal">Multiplayers en local</label>
+        <div class="multi"><input type="text" name="multiplayerslocal" id="multi" size="30"></div>
+    
+        <label for="online">Y a t-il un mode online? si oui jusqu'à combien de joueurs peut-on jouer en ligne ?</label>
+        <div><input type="text" name="online" id="online" size="30"></div>
+
+        <label for="yearrelease">Année de Sortie du Jeu</label>
+        <input type="number" id="yearrelease" name="yearrelease" min="1990">
+        
+        <label for="price">Prix du jeu en euros</label>
+        <input type="number" id="price" name="price" max="180">
+        
+        <select name="category_id" class="category_id" id="category_id">
+            <option value="vide">Category</option>
+            <?php foreach($categoryOfGames as $category): ?>
+                <option value="<?= htmlspecialchars($category['id']) ?>"><?= htmlspecialchars($category['category_game']) ?></option>
+            <?php endforeach; ?>
+        </select>
+
+        <select name="pegi_id" class="pegi_id" id="pegi_id">
+            <option value="vide">Age minimum recommandé</option>
+            <?php foreach($pegiAge as $pegi): ?>
+                <option value="<?= htmlspecialchars($pegi['id']) ?>"><?= htmlspecialchars($pegi['pegi_age']) ?></option>
+            <?php endforeach; ?>
+        </select>
+        
+        <label for="image">Nom de l'image du Jeu</label>
+        <input type="text" id="image" name="image">
+    
+        <input type="submit" value="Valider"/>
+    </form>
+</div>

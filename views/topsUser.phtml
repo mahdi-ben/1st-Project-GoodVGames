@@ -1,0 +1,21 @@
+
+<?php if(isset($game) && $game == true): ?>
+    <h3>Les Jeux par Note du Top de <?= htmlspecialchars($game['username']) ?> :</h3>
+<?php else: ?>
+     <p>Cet Utilisateur n'a pas ajouté de jeux dans son TopGames</p>
+<?php endif; ?>
+<section class="games" id="target">
+    <?php foreach($games as $game): ?>
+    	<article class="detailsGame" id="detailsGame">
+    	    <div class="image">
+    	        <img src="public/img/<?= htmlspecialchars($game["image"]) ?>" class="jaquette" alt="image">
+    		    <a href="index.php?road=displayGameTops&id=<?= htmlspecialchars($game['id_game']) ?>" title="dirige sur la page du jeu et tous ses commentaires"><h4><?= htmlspecialchars($game['jeux']) ?></h4></a>
+    		</div>
+    		<div class="comment">
+    		    <a href="index.php?road=displayTopsUser&id=<?= htmlspecialchars($game['user_id']) ?>" title="dirige sur le TopGames de l'utilisateur choisi"><p><?= htmlspecialchars($game['username']) ?> </a>: <?= htmlspecialchars($game['comment']) ?></p>
+    	        <h5><?= htmlspecialchars($game['rating']) ?>/20</h5>
+    	        <p>Testé sur : <?= htmlspecialchars($game['console_name']) ?></p>
+            </div>
+    	</article>
+    <?php endforeach; ?>
+</section>

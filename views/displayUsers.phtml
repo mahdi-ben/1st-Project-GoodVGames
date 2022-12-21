@@ -1,0 +1,15 @@
+
+<h3>Utilisateurs inscrits sur le site GoodVGames</h3>
+
+    <?php require_once('_errors.phtml');?>
+    <?php require_once('_valids.phtml');?>
+
+<section class="games">
+    <?php foreach($users as $user): ?>
+    	<article class="users">
+    	    <h4><a href="?road=displayTopsUser&id=<?= htmlspecialchars($user['id']) ?>" title="dirige sur le TopGames de l'utilisateur choisi"><?= nl2br(htmlspecialchars($user['username'])) ?></h4>
+            <button class="add"><a href="?road=displayTopsUser&id=<?= htmlspecialchars($user['id']) ?>" title="dirige sur le TopGames de l'utilisateur choisi">Voir les jeux de son Top</a></button>
+    	</article>
+    <?php endforeach; ?>
+    <h5>Total de personnes inscrites : <?= htmlspecialchars($numberOfUsers) ?></h5>
+</section>

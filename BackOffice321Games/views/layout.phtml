@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <Title>GoodVGames</Title>
+        <meta name="description" content="GoodVGames - Le site GoodVideoGames qui mènent aux Tops">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"/>
+        <link href="../public/css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <header class="header">
+            <?php require_once('header.phtml'); ?>
+        </header>
+    
+        <main class="container">
+            <div class="intro">
+                <?php if(isset($_SESSION['connected'])&& $_SESSION['connected'] == true && isset($games)): ?>
+                    <label for="search">Rechercher un jeu sur le site :</label>
+                    <input type="text" id="search">
+                <?php endif; ?>
+            </div> 
+            <div class="template">
+    
+            <?php include $template ?>
+            
+            </div>
+        </main>
+
+        <footer>
+            <?php require_once('footer.phtml'); ?>
+        </footer>
+        <script type="text/javascript" src="../public/js/app.js"></script>
+        <script type="text/javascript" src="../public/js/script.js"></script> 
+    </body>
+</html>

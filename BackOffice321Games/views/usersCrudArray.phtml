@@ -1,0 +1,47 @@
+
+
+<nav class="bloc nav">
+    <ul class="miniNav">
+        <li><a href="index.php?road=games" title="affiche un CRUD des jeux en Bdd">Games BDD</a></li>
+        <li><a href="index.php?road=displayAllComments" title="affiche un CRUD des jeux en Bdd">Commentaires</a></li>
+    </ul>
+</nav> 
+
+<h2>Utilisateurs inscrits sur le site GoodVGames</h2>
+
+    <?php require_once('_errors.phtml');?>
+    <?php require_once('_valids.phtml');?>
+    
+<button class="add"><a href="index.php?road=formUsers" title="affiche un formulaire pour l'ajout d'un utilisateur en Bdd">Ajouter un utilisateur</a></button>
+
+<section>
+    <table>
+        <caption>Utilisateurs inscrits sur GoodVGames</caption>
+        <thead>
+            <tr>
+                <th scope="col">Nom d'Utilisateur</th>
+                <th scope="col">Rôle</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th scope="col">Nombre d'inscrits : <?= htmlspecialchars($numberOfUsers) ?></th>
+                <th scope="col"></th>
+                <th scope="col"><button class="add"><a href="index.php?road=formUsers" title="affiche un formulaire pour l'ajout d'un utilisateur en Bdd">Ajouter un utilisateur</a></button></th>
+            </tr>
+        </tfoot>
+        <tbody>
+            <?php foreach($users as $user): ?>
+                <tr>
+                    <td scope="row"><a href="?road=displayTopsUser&id=<?= htmlspecialchars($user['id']) ?>" title="dirige sur le TopGames de l'utilisateur choisi"><?= nl2br(htmlspecialchars($user['username'])) ?></a></td>
+                    <td><?= htmlspecialchars($user['role']) ?></td>
+                    <td>
+                        <button class="update"><a href="?road=updateUser&id=<?= htmlspecialchars($user['id']) ?>" title="affiche un formulaire pour modifier un utilisateur en Bdd">Modifier</a></button>
+                        <button class="del"><a onclick="delAlert()" href="?road=deleteUser&id=<?= htmlspecialchars($user['id']) ?>" class="delete" title="supprime un utilisateur en Bdd">Supprimer</a></button>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</section>

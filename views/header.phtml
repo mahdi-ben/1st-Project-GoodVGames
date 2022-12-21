@@ -1,0 +1,37 @@
+
+<div class="bloc">
+    <a href="index.php?road=home" title="dirige sur la page Home"><img src="public/img/Logo1.png" class="logo" alt="Logo"></a>
+    <span>
+        <h1 class="title"><?= TITLEPAGE  ?></h1>
+        <h2 class="bienvenue">Tops Games</h2>
+    </span>
+</div>
+<div class="bloc">
+    <nav class="bloc nav">
+        <ul>
+            <li><a href="index.php?road=topVgames" title="Top Videos Games">Top Videos Games </a></li>
+        <?php if(isset($_SESSION['connected'])&& $_SESSION['connected'] == true): ?>
+            <?php if(isset($_SESSION['user'])&& $_SESSION['user'] == true): ?>
+                <li><a href="index.php?road=displayTopsUserCrud&id=<?= htmlspecialchars($_SESSION['user']['id']) ?>" title="dirige vers le Top de l'Utilisateur">Voir ton Top</a></li>
+                <li><a href="index.php?road=displayFormTopGames&id=<?= htmlspecialchars($_SESSION['user']['id']) ?>" title="affiche un formulaire pour créer son Topgames">Créer ton Top</a></li>
+            <?php endif; ?>
+            <?php if(isset($_SESSION['admin'])&& $_SESSION['admin'] == true): ?>
+                <li><a href="index.php?road=displayTopsUserCrud&id=<?= htmlspecialchars($_SESSION['admin']['id']) ?>" title="dirgige vers le Top de l'Utilisateur">Voir ton Top</a></li>
+                <li><a href="index.php?road=displayFormTopGames&id=<?= htmlspecialchars($_SESSION['admin']['id']) ?>" title="affiche un formulaire pour créer son Topgames">Créer ton Top</a></li>
+            <?php endif; ?>
+            <li><a href="index.php?road=disconnect" class="active" title="Deconnexion de l'utilisateur">Deconnexion</a></li>
+        <?php else: ?>
+            <li><a href="index.php?road=formUserRegister" title="affiche le formulaire d'Inscription">Inscription</a></li>
+            <li><a href="index.php?road=formConnect" class="active" title="affiche le formulaire de Connexion">Connexion</a></li>
+        <?php endif; ?>
+        </ul>
+    </nav>
+</div>
+<div class="hello">
+    <?php if(isset($_SESSION['connected'])&& $_SESSION['connected'] == true && $_SESSION['user'] == true): ?>
+        <p>Bonjour <?= htmlspecialchars($_SESSION['user']['username']) ?></p>
+    <?php endif; ?>    
+    <?php if(isset($_SESSION['connected'])&& $_SESSION['connected'] == true && $_SESSION['admin'] == true): ?>   
+        <p>Bonjour <?= htmlspecialchars($_SESSION['admin']['username']) ?></p>
+    <?php endif; ?>
+</div>

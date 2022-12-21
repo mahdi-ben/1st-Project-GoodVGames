@@ -1,0 +1,38 @@
+
+<h4>VideoGames enregistrés dans la BDD</h4>
+
+    <?php require_once('_errors.phtml');?>
+    <?php require_once('_valids.phtml');?>
+
+<button class="add"><a href="index.php?road=formVideoGames" title="affiche un formulaire pour l'ajout d'un jeu en Bdd">Ajouter un Jeux Video</a></button>
+
+<section>
+    <table class="gamesbdd" id="target">
+        <caption>Les Jeux Videos enregistrés sur GoodVGames</caption>
+        <thead>
+            <tr>
+                <th scope="col">Nom du Jeu</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th scope="col">Nombre de Jeux : <?= htmlspecialchars($numberOfGames) ?></th>
+                <th scope="col"></th>
+                <th scope="col"><button class="add"><a href="index.php?road=formVideoGames" title="affiche un formulaire pour l'ajout d'un jeu en Bdd">Ajouter un Jeux Video</a></button></th>
+            </tr>
+        </tfoot>
+        <tbody>
+            <?php foreach($games as $game): ?>
+                <tr>
+                    <td scope="row"><a href="index.php?road=displayGameTops&id=<?= htmlspecialchars($game['id_game']) ?>" title="dirige sur la page du jeu et tous ses commentaires"><?= nl2br(htmlspecialchars($game['name'])) ?></td></a>
+                    <td><?= htmlspecialchars($game['price']) ?></td>
+                    <td><button class="update"><a href="?road=updateGames&id=<?= htmlspecialchars($game['id_game']) ?>" title="affiche un formulaire pour modifier un jeu en Bdd">Modifier</a></button>
+                        <button class="del"><a onclick="delAlert()" href="?road=deleteGames&id=<?= htmlspecialchars($game['id_game']) ?>" class="delete" title="supprime un jeu en Bdd">Supprimer</a></button>
+                    </td>
+                </tr>
+            <?php endforeach; ?>    
+        </tbody>
+    </table>
+</section>

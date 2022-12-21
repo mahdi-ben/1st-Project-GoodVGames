@@ -1,0 +1,49 @@
+
+<h2>Créer Ton Top Games  !</h2>
+
+<div class="formAddTopsGames">
+    <form action="index.php?road=addTopGames" method="POST">
+        
+        <legend>Ajoute un jeu à ton Top Games :</legend>
+        
+        <?php require_once('_errors.phtml');?>
+        <?php require_once('_valids.phtml');?>
+        
+        <fieldset class="select">
+            <legend>Selectionne un jeu :</legend>
+                
+            <label for="gamelist">Liste des jeux :</label>
+            <select name="gamelist" class="gamelist">
+                <option value="vide">Jeux Vidéos</option>
+            <?php foreach($playlists as $playlist): ?>
+                <option value="<?= htmlspecialchars($playlist['id']) ?>"><?= htmlspecialchars($playlist['name']) ?></option>
+            <?php endforeach; ?>
+            </select>
+        </fieldset>
+        
+        <label for="test">Test sur 20</label>
+        <input type="number" name="test" size="30">
+    
+        <label for="content">Commentaires et Arguments sur le jeu (facultatif)</label>
+        <textarea type="textarea" name="content" size="30" placeholder="Notez les points forts du jeu, mais pas de spoils sur le scenario svp, ou le commentaire pourrait être supprimé"></textarea> 
+        
+        <label for="machine">Choisissez la Machine :</label>
+        <select name="machine" class="machine">
+            <option value="vide">Machine</option>
+        <?php foreach($consoles as $console): ?>
+            <option value="<?= htmlspecialchars($console['id']) ?>"><?= htmlspecialchars($console['console_name']) ?></option>
+        <?php endforeach; ?>
+        </select>
+        <input type="submit" value="Valider"/>
+    </form>
+</div>
+
+<div class="topGames">
+    <ol>
+    <?php if(isset($tops)): ?>
+        <?php foreach($tops as $top): ?>
+            <li><h4><?= htmlspecialchars($top['jeux']) ?> : <?= htmlspecialchars($top['rating']) ?>/20 </h4></li>
+        <?php endforeach; ?>  
+    <?php endif; ?> 
+    </ol>
+</div>

@@ -1,0 +1,37 @@
+
+
+<h2>Modifie un Jeu Video dans Ton TopGames !</h2>
+
+<div class="formRegister">
+    
+    <form action="index.php?road=updateTopsGame" method="POST" onsubmit="return confirm('Voulez vous vraiment modifier ce jeu dans votre Top ?');">
+        <input type="hidden" name="id" value="<?= $userTop ?>">
+        
+        <legend>Modifie la note, les commentaires, la console :  </legend>
+        
+        <?php require_once('_errors.phtml');?>
+        <?php require_once('_valids.phtml');?>
+
+        <fieldset class="select">
+            <legend><?= $data['name'] ?> :</legend>
+            <div class="image">
+    	         <img src="public/img/<?= htmlspecialchars($data["image"]) ?>" class="jaquette" alt="image">
+    		</div>
+        </fieldset>
+        
+        <label for="test">Test sur 20</label>
+        <input type="number" name="test" value="<?= $data['rating'] ?>" size="30" placeholder="Veuillez notez le jeu sur 20 avec un nombre">
+    
+        <label for="content">Commentaires et Arguments sur le jeu</label>
+        <textarea type="textarea" name="content" value="<?= $data['comment'] ?>" size="30" id="content" placeholder="Notez les points forts du jeu, mais pas de spoils sur le scenario svp, ou le commentaire pourrait être supprimé"><?= $data['comment'] ?></textarea> 
+        
+        <label for="machine">Choisissez la Machine :</label>
+        <select name="machine" class="machine" id="machine">
+            <option value="vide">Machine</option>
+            <?php foreach($consoles as $console): ?>
+                <option value="<?= htmlspecialchars($console['id']) ?>"><?= htmlspecialchars($console['console_name']) ?></option>
+            <?php endforeach; ?>
+        </select>
+        <input type="submit" value="Valider"/>
+    </form>
+</div>

@@ -1,0 +1,42 @@
+
+<nav class="bloc nav">
+    <ul class="miniNav">
+        <li><a href="index.php?road=topgamesbydevice">Voir les Tops par Consoles/PC</a></li>
+        <li><a href="index.php?road=users">Voir le Top des Utilisateurs inscrits</a></li>
+    </ul>
+</nav>
+
+<?php if(empty($games) || $games == false): ?>
+    <p>Tu n'as pas encore ajouté de jeux à ton TopGames</p>
+<?php endif; ?>
+<?php if(isset($game) && $game == true): ?>
+    <h2>Les Jeux par Note du Top de <?= htmlspecialchars($game['username']) ?> :</h2>
+<?php endif; ?>
+<?php if(isset($_SESSION['user']) && $_SESSION['user'] == true): ?>
+    <button type="button" class="add"><a href="index.php?road=displayFormTopGames&id=<?= htmlspecialchars($_SESSION['user']['id']) ?>">Ajoute un Jeu à ton Top</a></button>
+<?php endif; ?>
+<?php if(isset($_SESSION['admin']) && $_SESSION['admin'] == true): ?>
+    <button type="button" class="add"><a href="index.php?road=displayFormTopGames&id=<?= htmlspecialchars($_SESSION['admin']['id']) ?>">Ajoute un Jeu à ton Top</a></button>
+<?php endif; ?>
+
+
+<?php require_once('_errors.phtml');?>
+<?php require_once('_valids.phtml');?>
+
+<section class="games" id="target">
+    <?php foreach($games as $game): ?>
+    	<article class="userCrud">
+    	    <div class="image">
+    	        <img src="public/img/<?= htmlspecialchars($game["image"]) ?>" class="jaquette" alt="image">
+    		    <a href="index.php?road=displayGameTops&id=<?= htmlspecialchars($game['id_game']) ?>" title="dirige sur la page du jeu et tous ses commentaires"><h4><?= htmlspecialchars($game['jeux']) ?></h4></a>
+    		</div>
+    		<button class="update"><a href="?road=updateTopsGame&id=<?= htmlspecialchars($game['id_game']) ?>" class="upd" title="affiche un formulaire de modification du jeu choisi du Top de l'utilisateur">Modifier</a></button>
+            <button class="del"><a onclick="delAlert()" href="?road=deleteTopsGame&id=<?= htmlspecialchars($game['id_game']) ?>" class="delete" title="Supprime le jeu choisi du Top de l'utilisateur">Supprimer</a></button>
+    		<div class="comment">
+    		    <a href="index.php?road=displayTopsUser&id=<?= htmlspecialchars($game['user_id']) ?>" title="dirige sur le TopGames de l'utilisateur choisi"><p><?= htmlspecialchars($game['username']) ?> </a>: <?= htmlspecialchars($game['comment']) ?></p>
+    	        <h5><?= htmlspecialchars($game['rating']) ?>/20</h5>
+    	        <p>Testé sur : <?= htmlspecialchars($game['console_name']) ?></p>
+            </div>
+    	</article>
+    <?php endforeach; ?>
+</section>

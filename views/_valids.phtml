@@ -1,0 +1,8 @@
+
+<?php if (isset($valids) && count($valids) > 0) : ?>
+  <ul>
+    <?php foreach ($valids as $valid) : ?>
+      <li class="valids"> <?= $valid; ?> </li>
+    <?php endforeach; ?>
+  </ul>
+<?php endif; ?>

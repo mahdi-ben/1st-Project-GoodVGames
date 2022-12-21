@@ -1,0 +1,25 @@
+
+<h3>Les Tops Video Games toutes catégories confondus</h3>
+
+<p>La note des jeux est une moyenne de toutes les notes attribuées des personnes inscrites sur le site.</p>
+    
+<section class="games" id="target">
+    <?php foreach($games as $game): ?>
+    	<article class="game" id="game">
+    	    <div class="image">
+    	        <img src="public/img/<?= htmlspecialchars($game["image"]) ?>" class="jaquette" alt="image">
+    		</div>
+    		<a href="index.php?road=displayGameTops&id=<?= htmlspecialchars($game['id_game']) ?>" title="dirige sur la page du jeu et tous ses commentaires"><h4><?= htmlspecialchars($game['jeux']) ?></h4></a>
+    		<h5>Note : <?= htmlspecialchars(round($game['avgRating'])) ?>/20</h5>
+    		<span><?= nl2br(htmlspecialchars($game['descriptif'])) ?></span>
+    		<p>Type de Jeu : <?= htmlspecialchars($game['typeofgame']) ?></p>
+    		<p>Multiplayers en local : <?= htmlspecialchars($game['multiplayerslocal']) ?></p>
+    		<p>Online : <?= htmlspecialchars($game['online']) ?></p>
+    		<p>PEGI : <?= htmlspecialchars($game['pegi']) ?></p>
+    		<p>Prix : ~ <?= htmlspecialchars($game['price']) ?> euros</p>
+    	</article>
+    <?php endforeach; ?>
+</section>
+        
+    
+

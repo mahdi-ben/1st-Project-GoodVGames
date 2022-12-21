@@ -1,0 +1,20 @@
+
+
+<h3>Tous les commentaires du site Good VideoGames</h3>
+
+<p>Supprimer tous les commentaires injurieux ou inappropriés par rapport au Conditions Général d'Utilisation du site.</p>
+
+    
+<section class="games">
+	<article class="detailsGame" id="detailsGame">
+        <p>Total de commentaires sur le site : <?= htmlspecialchars($numberOfComments) ?></p>
+		<?php foreach($comments as $comment): ?>
+		    <div class="comment">
+			    <a href="index.php?road=displayTopsUser&id=<?= htmlspecialchars($comment['user_id']) ?>" title="dirige sur le TopGames de l'utilisateur choisi"><p><?= htmlspecialchars($comment['username']) ?> </a>: <?= htmlspecialchars($comment['comment']) ?></p>
+	            <button class="del"><a onclick="delAlert()" href="?road=deleteComment&id=<?= htmlspecialchars($comment['tops_id']) ?>" class="delete" title="supprime le jeu du TopGames de l'utilisateur et le commentaire associé">Supprimer le commentaire et le jeu du top</a></button>
+	            <h5><?= htmlspecialchars($comment['rating']) ?>/20</h5>
+		        <p><?= htmlspecialchars($comment['jeux']) ?></p>
+		    </div>
+		<?php endforeach; ?>
+	</article>
+</section>

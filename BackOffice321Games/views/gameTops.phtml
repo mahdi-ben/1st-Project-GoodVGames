@@ -1,0 +1,30 @@
+
+
+<h3>Les Games toujours au Top</h3>
+    
+    <section class="games" id="target">
+        <?php foreach($games as $game): ?>
+        
+        	<article class="detailsGame" id="detailsGame">
+        	    <div class="image">
+        	    <img src="../public/img/<?= htmlspecialchars($game["image"]) ?>" class="jaquette" alt="image">
+        		</div>
+        		<a href="index.php?road=displayGameTops&id=<?= htmlspecialchars($game['id_game']) ?>" title="dirige sur la page du jeu et tous ses commentaires"><h4><?= htmlspecialchars($game['jeux']) ?></h4></a>
+        		<h5>Moyenne des notes : <?= htmlspecialchars(round($game['avgRating'])) ?>/20</h5>
+        		<span><?= nl2br(htmlspecialchars($game['descriptif'])) ?></span>
+        		<p>Type de Jeu : <?= htmlspecialchars($game['typeofgame']) ?></p>
+        		<p>Multiplayers en local : <?= htmlspecialchars($game['multiplayerslocal']) ?></p>
+        		<p>Online : <?= htmlspecialchars($game['online']) ?></p>
+        		<p>PEGI : <?= htmlspecialchars($game['pegi']) ?></p>
+        		<p>Prix : ~ <?= htmlspecialchars($game['price']) ?> euros</p>
+        	<?php endforeach; ?>
+        		<p>Commentaires :</p>
+        	<?php foreach($comments as $comment): ?>
+        	    <div class="comment">
+        		    <a href="index.php?road=displayTopsUser&id=<?= htmlspecialchars($comment['user_id']) ?>" title="dirige sur le TopGames de l'utilisateur choisi"><p><?= htmlspecialchars($comment['username']) ?> </a>: <?= htmlspecialchars($comment['comment']) ?></p>
+        	        <h5><?= htmlspecialchars($comment['rating']) ?>/20</h5>
+        	    </div>
+        	<?php endforeach; ?>
+        	</article>
+        
+    </section>

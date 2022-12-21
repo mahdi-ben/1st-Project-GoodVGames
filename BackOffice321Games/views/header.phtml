@@ -1,0 +1,31 @@
+        
+<div class="bloc">
+    <a href="index.php?road=home" title="dirige sur la page Home"><img src="../public/img/Logo1.png" class="logo" alt="Logo"></a>
+    <span>
+        <h1 class="title"><?= TITLEPAGE  ?></h1>
+        <h2 class="bienvenue">Bienvenue dans le Game</h2>
+    </span>
+</div>
+<div class="bloc">
+    <nav class="bloc nav">
+        <ul>
+        <?php if(isset($_SESSION['connected'])&& $_SESSION['connected'] == true && $_SESSION['admin'] == true): ?>
+            <li><a href="index.php?road=topVgames" title="affiche tous les jeux de la Bdd">Videos Games</a></li>
+            <li><a href="index.php?road=users" title="affiche tous les utilisateurs inscrits sur le site">Utilisateurs</a></li>
+        <?php endif; ?>
+        <?php if(isset($_SESSION['connected'])&& $_SESSION['connected'] == true): ?>
+            <li><a href="index.php?road=disconnect" class="active" title="Deconnecte la session de l'utilisateur">Deconnexion</a></li>
+        <?php else: ?>
+            <li><a href="index.php?road=formConnect" class="active" title="Affiche le formulaire de Connexion">Connexion</a></li>
+        <?php endif; ?>
+        </ul>
+    </nav>
+</div>
+<div class="hello">
+    <?php if(isset($_SESSION['connected'])&& $_SESSION['connected'] == true && $_SESSION['admin'] == true): ?>
+        <p>Bonjour <?= htmlspecialchars($_SESSION['admin']['username']) ?></p>
+    <?php endif; ?>
+    <?php if(isset($_SESSION['connected'])&& $_SESSION['connected'] == true && $_SESSION['user'] == true): ?>
+        <p>Accès refusé, redirection vers le site <?= header('refresh:7;url= https://mahdibenshimi.sites.3wa.io/Project%20GoodVGames/index.php?road=home'); ?></p>
+    <?php endif; ?>
+</div>

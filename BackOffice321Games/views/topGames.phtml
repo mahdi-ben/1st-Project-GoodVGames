@@ -1,0 +1,36 @@
+
+<nav class="bloc nav">
+    <ul class="miniNav">
+        <li><a href="index.php?road=displayFormTopGames" title="affiche un formulaire pour ajouter un jeu à son TopGames personel">Créer ton Top</a></li>
+        <li><a href="index.php?road=displayAllComments" title="affiche tous les commentaires des utilisateurs">Commentaires</a></li>
+    </ul>
+</nav> 
+       
+<h2>Les Video Games toutes catégories confondus dans la BDD</h2>
+
+<p>Nombre de jeux dans la base de données : <?= htmlspecialchars($numberOfGames) ?></p>
+
+    <?php require_once('_errors.phtml');?>
+    <?php require_once('_valids.phtml');?>
+    
+<button class="add"><a href="index.php?road=formVideoGames" title="affiche un formulaire pour l'ajout d'un jeu en Bdd">Ajouter un Jeux Video</a></button>
+<section class="games" id="target">
+    <?php foreach($games as $game): ?>
+    	<article class="game" id="game">
+    	    <div class="image">
+    	        <img src="../public/img/<?= htmlspecialchars($game["image"]) ?>" class="jaquette" alt="image">
+    		</div>
+    		<a href="index.php?road=displayGameTops&id=<?= htmlspecialchars($game['id_game']) ?>" title="dirige sur la page du jeu et tous ses commentaires"><h4><?= htmlspecialchars($game['name']) ?></h4></a>
+    		<span><?= nl2br(htmlspecialchars($game['descriptif'])) ?></span>
+    		<p>Type de Jeu : <?= htmlspecialchars($game['typeofgame']) ?></p>
+    		<p>Multiplayers en local : <?= htmlspecialchars($game['multiplayerslocal']) ?></p>
+    		<p>Online : <?= htmlspecialchars($game['online']) ?></p>
+    		<p>PEGI : <?= htmlspecialchars($game['pegi']) ?></p>
+    		<p>Prix : ~ <?= htmlspecialchars($game['price']) ?> euros</p>
+    		<p>Année de Sortie : ~ <?= htmlspecialchars($game['yearrelease']) ?></p>
+    		<p>Nom de l'image : <?= htmlspecialchars($game['image']) ?> </p>
+    		<button class="update"><a href="?road=updateGames&id=<?= htmlspecialchars($game['id_game']) ?>" title="affiche un formulaire pour modifier un jeu en Bdd">Modifier</a></button>
+            <button class="del"><a onclick="delAlert()" href="?road=deleteGames&id=<?= htmlspecialchars($game['id_game']) ?>" class="delete" title="supprime un jeu en Bdd">Supprimer</a></button>
+    	</article>
+    <?php endforeach; ?>
+</section>
