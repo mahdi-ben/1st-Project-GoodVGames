@@ -56,7 +56,7 @@ if(array_key_exists('road', $_GET)) :
             $controller = new Controllers\UsersController();
             $controller -> disconnectUser();
         break;
-        
+ 
         case 'displayFormTopGames':
 
             $controller = new Controllers\VideoGamesController();
