@@ -1,8 +1,6 @@
 <?php
 
 session_start();
-// echo password_hash("1234Abc&", PASSWORD_DEFAULT);
-
 
 require('../config/config.php');
 
