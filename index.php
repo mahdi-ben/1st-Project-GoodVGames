@@ -51,12 +51,6 @@ if(array_key_exists('road', $_GET)) :
             $controller -> formUserRegister();
         break;
         
-        case 'userRegister':
-            
-            $controller = new Controllers\UsersController();
-            $controller -> submitUserRegister();
-        break;
-        
         case 'disconnect':
             
             $controller = new Controllers\UsersController();
